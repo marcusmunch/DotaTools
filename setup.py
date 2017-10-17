@@ -6,7 +6,7 @@ setup(name='dotatools',
 	url='http://github.com/marcusmunch/dotatools',
 	author='Marcus Grünewald',
 	author_email='marcus@marcusmunch.dk',
-	license='GNU',
+	license='GNU General Public License v3.0',
 	packages=['dotatools'],
 	install_requires=[
 		'requests',
