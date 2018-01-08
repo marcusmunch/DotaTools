@@ -6,7 +6,7 @@ class Hero(object):
 	try:
 		r = requests.get("https://api.opendota.com/api/heroes", timeout=30)
 	except requests.exceptions.ReadTimeout:
-		print 'Request timed out!'
+		print("Request timed out!")
 		exit(1)
 
 	_data = json.loads(r.text)
