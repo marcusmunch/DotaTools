@@ -19,4 +19,4 @@ m = dotatools.Match(data[0]["match_id"])
 print("Compiling list of player names...\n")
 
 for u in list(p.personaname for p in m.players):
-	print u
+	print(u)
