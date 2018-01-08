@@ -8,3 +8,4 @@ python:
 
 script:
   - pip install .
+  - for f in test/*.py; do echo $f;python $f; echo; done
