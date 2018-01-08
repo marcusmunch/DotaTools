@@ -16,7 +16,10 @@ class User(object):
 		"""Returns the 'personaname' or Steam nickname. This is only updated up until the most recent tracked match"""
 		data = self._data
 
-		return data["profile"]["personaname"].encode('utf-8')
+		try:
+			return data["profile"]["personaname"].encode('utf-8')
+		except KeyError:
+			return "Anonymous"
 
 	@property
 	def lastmatch(cls, significant=1):
