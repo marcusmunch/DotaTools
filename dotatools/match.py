@@ -16,8 +16,10 @@ class Match(object):
 
 	@property
 	def players(cls):
+		from .user import User
+
 		for p in cls._data["players"]:
 			try:
-				yield p["personaname"].encode("utf-8")
+				yield User(p["account_id"])
 			except AttributeError:
 				yield "Anonymous"
