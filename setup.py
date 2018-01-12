@@ -4,7 +4,7 @@
 from setuptools import setup
 
 setup(name='dotatools',
-	version='0.0.2',
+	version='0.1',
 	description='OpenDota API wrapper',
 	long_description='dotatools is an API wrapper for the open API supplied by OpenDota',
 	url='http://github.com/marcusmunch/dotatools',
