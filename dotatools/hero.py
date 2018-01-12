@@ -9,12 +9,12 @@ class Hero(object):
 		print("Request timed out!")
 		exit(1)
 
-	_data = json.loads(r.text)
+	__data = json.loads(r.text)
 
 	def __init__(self, hero_id):
 		self.hero_id = hero_id
 
-		for i in self._data:
+		for i in self.__data:
 			if i["id"] == hero_id:
 				self.id = i["id"]
 
