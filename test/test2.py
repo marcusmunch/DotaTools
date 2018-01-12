@@ -3,10 +3,16 @@
 import dotatools
 
 print("Current heroes in Dota 2 are:")
-for i in dotatools.Hero._data:
-	h = dotatools.Hero(i["id"])
+
+failcount = 0
+id_lookup = 0
+
+while failcount < 10:
+	h = dotatools.Hero(id_lookup)
 
 	if h.localname:
-		print("ID {:03d}: {:<25} 'Code' name: {}".format(i["id"], h.localname, h.name.title()))
+		print("ID {:03d}: {:<25} 'Code' name: {}".format(id_lookup, h.localname, h.name.title()))
+	else:
+		failcount += 1
 
-print("\nHero data keys are: " + ', '.join(dotatools.Hero._data[0].keys()))
+	id_lookup += 1
