@@ -52,8 +52,10 @@ class Hero(object):
 					picks += int(hero[stat])
 				if re.search('^\d+_win', stat):
 					wins += int(hero[stat])
+			winrate = wins*100.0 / picks
 			hero.update({"pub_picks": picks})
 			hero.update({"pub_wins": wins})
+			hero.update({"pub_winrate": winrate})
 
 		for h in herostats:
 			if h["id"] == cls.id:
