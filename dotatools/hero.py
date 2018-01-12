@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import requests, json
+import requests, json, re
 
 class Hero(object):
 	try:
@@ -22,13 +22,39 @@ class Hero(object):
 	@property
 	def name(cls):
 		try:
-			return cls._data[cls.id]["name"][14:]
+			return cls.__data[cls.id]["name"][14:]
 		except:
 			pass
+
 
 	@property
 	def localname(cls):
 		try:
-			return cls._data[cls.id]["localized_name"]
+			return cls.__data[cls.id]["localized_name"]
 		except:
 			pass
+
+	@property
+	def stats(cls):
+		try:
+			r = requests.get("https://api.opendota.com/api/heroStats", timeout=30)
+			herostats = json.loads(r.text)
+
+		except requests.exceptions.ReadTimeout:
+			print("Request timed out!")
+			exit(1)
+
+		for hero in herostats:
+			picks = 0
+			wins = 0
+			for stat in hero:
+				if re.search('^\d+_pick', stat):
+					picks += int(hero[stat])
+				if re.search('^\d+_win', stat):
+					wins += int(hero[stat])
+			hero.update({"pub_picks": picks})
+			hero.update({"pub_wins": wins})
+
+		for h in herostats:
+			if h["id"] == cls.id:
+				return h
