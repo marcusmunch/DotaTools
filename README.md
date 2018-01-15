@@ -1,7 +1,7 @@
 dotatools
 =========
 
-[![Build Status](https://travis-ci.org/marcusmunch/dotatools2.svg?branch=master)](https://travis-ci.org/marcusmunch/dotatools2)
+[![Build Status](https://travis-ci.org/marcusmunch/dotatools.svg?branch=master)](https://travis-ci.org/marcusmunch/dotatools)
 [![PyPI](https://img.shields.io/pypi/v/dotatools.svg)](https://pypi.python.org/pypi/dotatools)
 [![PyPI](https://img.shields.io/pypi/pyversions/dotatools.svg)](https://pypi.python.org/pypi/dotatools)
 [![PyPI](https://img.shields.io/pypi/l/dotatools.svg)](https://pypi.python.org/pypi/dotatools)
