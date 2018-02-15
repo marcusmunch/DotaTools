@@ -13,6 +13,8 @@ Requirements
 Dotatools only requires the [requests](http://python-requests.org) module.
 Dotatools will only return data if it is already available on OpenDota. That means if you haven't, you should enter your settings inside your Dota 2 game client and enable the setting **Expose public data**.
 
+[Requests-cache](https://pypi.python.org/pypi/requests-cache/) is supported, but not required.
+
 
 Setup
 =====
