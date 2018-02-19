@@ -11,3 +11,5 @@ script:
   - python test/test.py
   - python test/test2.py
   - python test/test3.py $user
+  - pip install requests-cache
+  - python test/test2.py
