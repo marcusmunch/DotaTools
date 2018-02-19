@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import requests, json, re
+import requests, json, re, sys, time
 
 class Hero(object):
 	try:
@@ -37,6 +37,8 @@ class Hero(object):
 	@property
 	def stats(cls):
 		try:
+			if not "requests_cache" in sys.modules:
+				time.sleep(0.5)
 			r = requests.get("https://api.opendota.com/api/heroStats", timeout=30)
 			herostats = json.loads(r.text)
 
