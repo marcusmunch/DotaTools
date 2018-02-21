@@ -6,8 +6,10 @@ python:
   - "3.5"
   - "3.6"
 
-script:
+install:
   - pip install .
+
+script:
   - python test/test.py
   - python test/test2.py
   - python test/test3.py $user
