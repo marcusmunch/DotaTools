@@ -2,40 +2,47 @@
 
 import requests, json, re, sys, time
 
-class Hero(object):
+def build_database():
 	try:
-		r = requests.get("https://api.opendota.com/api/heroes", timeout=30)
+		r = requests.get("https://api.opendota.com/api/heroes", timeout=10)
 	except requests.exceptions.ReadTimeout:
 		print("Request timed out!")
 		exit(1)
 
-	__data = json.loads(r.text)
+	data = json.loads(r.text)
+	heroes = {}
+	for h in data:
+		heroes.update({h["id"]: h})
+
+	return heroes
+
+
+class Hero(object):
+	database = build_database()
 
 	def __init__(self, hero_id):
+		self.heroes = self.database
 		self.hero_id = hero_id
 
-		for i in self.__data:
-			if i["id"] == hero_id:
-				self.id = i["id"]
-
+	@property
+	def data(cls):
+		try:
+			return cls.heroes[cls.hero_id]
+		except:
+			return None
 
 	@property
-	def name(cls):
-		try:
-			return cls.__data[cls.id]["name"][14:]
-		except:
-			pass
-
+	def codename(cls):
+		if cls.data: return cls.data["name"]
 
 	@property
 	def localname(cls):
-		try:
-			return cls.__data[cls.id]["localized_name"]
-		except:
-			pass
+		if cls.data: return cls.data["localized_name"]
 
 	@property
 	def stats(cls):
+		if not cls.data: return None
+
 		try:
 			if not "requests_cache" in sys.modules:
 				time.sleep(0.5)
@@ -55,10 +62,10 @@ class Hero(object):
 				if re.search('^\d+_win', stat):
 					wins += int(hero[stat])
 			winrate = wins*100.0 / picks
-			hero.update({"pub_picks": picks})
-			hero.update({"pub_wins": wins})
-			hero.update({"pub_winrate": winrate})
+			hero.update({"picks": picks})
+			hero.update({"wins": wins})
+			hero.update({"winrate": winrate})
 
 		for h in herostats:
-			if h["id"] == cls.id:
+			if h["id"] == cls.hero_id:
 				return h

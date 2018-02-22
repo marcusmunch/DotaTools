@@ -13,11 +13,11 @@ while failcount < 10:
     if h.localname:
         if not "requests_cache" in sys.modules:
             print("ID {:03d}: {:<33} 'Code' name: {}".format(
-                id_lookup, h.localname, h.name.title()))
+                id_lookup, h.localname, h.codename.title()))
         else:
-            pub_wr = '{:.2f}%'.format(h.stats["pub_winrate"])
+            pub_wr = '{:.2f}%'.format(h.stats["winrate"])
             print("ID {:03d}: {:<20}{} wins - 'Code' name: {}".format(id_lookup,
-                                                                      h.localname, pub_wr, h.name.title()))
+                                                                      h.localname, pub_wr, h.codename.title()))
     else:
         failcount += 1
 

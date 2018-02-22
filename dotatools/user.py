@@ -26,4 +26,7 @@ class User(object):
 		r = requests.get("https://api.opendota.com/api/players/{}/matches?significant={}&limit=1".format(cls.steamID, significant))
 		j = json.loads(r.text)
 
-		return (j[0]["match_id"])
+		try:
+			return (j[0]["match_id"])
+		except IndexError:
+			return None
