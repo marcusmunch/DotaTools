@@ -18,7 +18,7 @@ class User(object):
 
 		try:
 			return data["profile"]["personaname"].encode('utf-8')
-		except KeyError:
+		except (AttributeError, KeyError):
 			return "Anonymous"
 
 	@property
