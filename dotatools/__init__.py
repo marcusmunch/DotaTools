@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 
-import json
-
-import requests
 try:
-	import requests_cache
-	requests_cache.install_cache(expire_after=600)
-except ImportError:
-	pass
+    import requests_cache
 
-from .user import User
-from .match import Match
+    requests_cache.install_cache(expire_after=600)
+except ImportError:
+    requests_cache = None
+    pass
+
 from .hero import Hero
+from .match import Match
+from .user import User

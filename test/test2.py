@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-import dotatools, sys
+import sys
+
+import dotatools
 
 print("Current heroes in Dota 2 are:")
 
