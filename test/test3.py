@@ -5,8 +5,13 @@ import argparse
 import dotatools
 
 parser = argparse.ArgumentParser()
-parser.add_argument('user_id')
-u = dotatools.User(parser.parse_args().user_id)
+parser.add_argument('user_id', type=int)
+args = parser.parse_args()
 
-if u.lastmatch:
-	print("Found last match successfully!")
+if args.user_id:
+    u = dotatools.User(args.user_id)
+
+    if not u.lastmatch:
+        raise RuntimeError
+
+print("Found last match successfully!")
